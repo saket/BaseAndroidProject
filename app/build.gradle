@@ -1,11 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
-repositories {
-  maven { url "https://jitpack.io" }
-}
 
 android {
   compileSdkVersion versions.compileSdk
@@ -31,23 +26,35 @@ android {
 }
 
 dependencies {
-  implementation "androidx.appcompat:appcompat:$versions.androidX"
-  implementation "androidx.recyclerview:recyclerview:$versions.androidX"
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+  implementation deps.androidx.appCompat
+  implementation deps.androidx.recyclerView
+  implementation deps.androidx.browser
+  implementation deps.androidx.ktx
+  implementation deps.androidx.lifecycle.process
+  implementation deps.material.core
 
-  implementation "com.google.dagger:dagger:$versions.dagger"
-  kapt "com.google.dagger:dagger-compiler:$versions.dagger"
-  implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
-  implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
-  implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
-  implementation "com.squareup.moshi:moshi:$versions.moshi"
-  kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi"
-  implementation "com.jakewharton.timber:timber:$versions.timber"
-  implementation('com.github.JakeWharton:kotterknife:e157638df1') {
-    exclude group: 'com.android.support'
-  }
-  implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
-  implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
-  implementation "com.jakewharton.rxbinding2:rxbinding:$versions.rxBindings"
-  implementation "com.jakewharton.rxrelay2:rxrelay:$versions.rxRelay"
+  implementation deps.contour
+  implementation deps.timber
+  implementation deps.rx2.core
+  implementation deps.rx2.android
+  implementation deps.rx2.binding
+  implementation deps.rx2.kotlin
+  implementation deps.rx2.replayingShare
+  implementation deps.rx2.replayingShareKotlin
+  implementation deps.dagger.runtime
+  implementation deps.dagger.assistedInject.annotations
+  implementation deps.dagger.inflationInject.core
+  kapt deps.dagger.compiler
+  kapt deps.dagger.assistedInject.processor
+  kapt deps.dagger.inflationInject.processor
+  implementation deps.inboxRecyclerView
+  implementation deps.itemAnimators
+  implementation deps.betterLinkMovementMethod
+  implementation deps.cascade
+
+  androidTestImplementation deps.androidx.test.core
+  androidTestImplementation deps.androidx.test.runner
+  androidTestImplementation deps.androidx.test.jUnit
+  androidTestImplementation deps.androidx.test.jUnitKtx
+  androidTestImplementation deps.truth
 }
